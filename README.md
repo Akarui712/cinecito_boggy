@@ -14,3 +14,6 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+# Registro a MovieDB el 31_oct_2025
+![image alt](https://github.com/Akarui712/cinecito_boggy/blob/e10ff40485e6cfda917533fffc89eed6dff14b30/RegistroMovieDB_RHMF.PNG)
