@@ -1,4 +1,6 @@
+import 'package:cinecito/domain/entities/movie.dart';
+
 abstract class MoviesDatasource
 {
-  Future<List<Map<String,dynamic>>> getNowPlaying({int page = 1});
+  Future<List<Movie>> getNowPlaying({int page = 1});
 }
