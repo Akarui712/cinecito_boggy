@@ -2,12 +2,23 @@ import 'package:cinecito/domain/entities/movie.dart';
 import 'package:cinecito/presentation/providers/movies/movie_repository_provider.dart';
 import 'package:flutter_riverpod/legacy.dart';
 
-final nowPlayingMoviesProvider =
-    StateNotifierProvider<MoviesNotifier, List<Movie>>((ref)
-    {
-      final fetchMoreMovies = ref.watch(movieRepositoryProvider).getNowPlaying;
-      return MoviesNotifier(fetchMoreMovies: fetchMoreMovies);
-    });
+final nowPlayingMoviesProvider = StateNotifierProvider<MoviesNotifier, List<Movie>>((ref)
+{
+  final fetchMoreMovies = ref.watch(movieRepositoryProvider).getNowPlaying;
+  return MoviesNotifier(fetchMoreMovies: fetchMoreMovies);
+});
+
+final popularMoviesProvider = StateNotifierProvider<MoviesNotifier,List<Movie>>((ref)
+{
+  final fetchMoreMovies = ref.watch(movieRepositoryProvider).getUpcoming;
+  return MoviesNotifier(fetchMoreMovies: fetchMoreMovies);
+});
+
+final topRatedMoviesProvider = StateNotifierProvider<MoviesNotifier,List<Movie>>((ref)
+{
+  final fetchMoreMovies = ref.watch(movieRepositoryProvider).getTopRated;
+  return MoviesNotifier(fetchMoreMovies: fetchMoreMovies);
+});
 
 typedef MovieCallBack = Future<List<Movie>> Function({int page});
 

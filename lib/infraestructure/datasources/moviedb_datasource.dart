@@ -21,6 +21,17 @@ class MoviedbDatasource extends MoviesDatasource
     ),
   );
 
+  List<Movie> _jsonToMovies(Map<String,dynamic> json)
+  {
+    final response = MovieDbResponse.fromJson(json);
+    final List<Movie> movies = response.results 
+        .where((moviedb) => moviedb.posterPath != 'no-poster')
+        .map((moviedb) => MovieMapper.movieDBToMovieEntity(moviedb))
+        .toList();
+
+    return movies;
+  }
+
   @override
   Future<List<Movie>> getNowPlaying({int page = 1}) async
   {
@@ -29,13 +40,27 @@ class MoviedbDatasource extends MoviesDatasource
       '/movie/now_playing',
       queryParameters: {'page': page},
     );
-    final movieDbResponse = MovieDbResponse.fromJson(response.data);
-
-    final movies = movieDbResponse.results
-        .where((moviedb) => moviedb.posterPath != 'no-poster')
-        .map((moviedb) => MovieMapper.movieDBToMovieEntity(moviedb))
-        .toList();
-    
-    return movies;
+    return _jsonToMovies(response.data);
+  }
+  
+  @override
+  Future<List<Movie>> getPopular({int page = 1})
+  {
+    // TODO: implement getPopular
+    throw UnimplementedError();
+  }
+  
+  @override
+  Future<List<Movie>> getTopRated({int page = 1})
+  {
+    // TODO: implement getTopRated
+    throw UnimplementedError();
+  }
+  
+  @override
+  Future<List<Movie>> getUpcoming({int page = 1})
+  {
+    // TODO: implement getUpcoming
+    throw UnimplementedError();
   }
 }
