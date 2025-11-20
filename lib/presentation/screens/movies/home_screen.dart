@@ -1,4 +1,5 @@
 import 'package:cinecito/presentation/views/movies/home_view.dart';
+import 'package:cinecito/presentation/widgets/shared/custom_bottom_navigation.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget
@@ -9,6 +10,10 @@ class HomeScreen extends StatelessWidget
   @override
   Widget build(BuildContext context)
   {
-    return const Scaffold(body: SafeArea(child: HomeView()));
+    return const Scaffold
+    (
+      body: SafeArea(child: HomeView()),
+      bottomNavigationBar: CustomBottomNavigation(),
+    );
   }
 }

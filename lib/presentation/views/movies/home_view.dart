@@ -1,4 +1,6 @@
+import 'package:cinecito/domain/entities/movie.dart';
 import 'package:cinecito/presentation/providers/movies/movies_providers.dart';
+import 'package:cinecito/presentation/widgets/shared/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -27,14 +29,30 @@ class _HomeViewState extends ConsumerState<HomeView>
     {
       return const Center(child: CircularProgressIndicator());
     }
-    return ListView.builder
+    return CustomScrollView
     (
-      itemBuilder: (_, index)
-      {
-        final movie = nowPlayingMovies[index];
-        return ListTile(title: Text(movie.title));
-      },
-      itemCount: nowPlayingMovies.length,
+      slivers: 
+      [
+        SliverAppBar
+        (
+          floating: true,
+          flexibleSpace: FlexibleSpaceBar(title: CustomAppBar()),
+        ),
+        SliverList
+        (
+          delegate: SliverChildBuilderDelegate((context,index)
+          {
+            final movie = nowPlayingMovies(index);
+            return ListTile
+            (
+              title: Text(movie.title),
+              subtitle: Text(movie.overview),
+            );
+          },
+          childCount: nowPlayingMovies.length
+          ),
+        ),
+      ],
     );
   }
 }
